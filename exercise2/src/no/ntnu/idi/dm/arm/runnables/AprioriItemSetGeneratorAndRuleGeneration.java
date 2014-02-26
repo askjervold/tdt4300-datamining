@@ -70,10 +70,10 @@ public class AprioriItemSetGeneratorAndRuleGeneration {
 	}
 
 	public static void main(String[] args) {
-
+		
 		// get the data set
 		List<ItemSet<String>> transactions=null;
-		boolean useSmallDataset=true; //use small or large dataset
+		boolean useSmallDataset=false; //use small or large dataset
 		try {
 			if(useSmallDataset)
 				transactions=readFile("smallDataset.txt");
@@ -90,11 +90,13 @@ public class AprioriItemSetGeneratorAndRuleGeneration {
 		Double minSupport = .4d;
 		System.out.println("We set the relative minsup to " + minSupport);
 
-		AbstractApriori<String> apriori;
-
+		AbstractApriori<String> apriori;		
+		
+		long startTime = System.currentTimeMillis();
+		
 //		apriori = new BruteForceApriori<String>(transactions);
-//		apriori = new FKMinus1F1Apriori<String>(transactions);
-		apriori = new FkMinus1FKMinus1<String>(transactions);
+		apriori = new FKMinus1F1Apriori<String>(transactions);
+//		apriori = new FkMinus1FKMinus1<String>(transactions);
 
 		apriori.apriori(minSupport);
 
@@ -102,6 +104,10 @@ public class AprioriItemSetGeneratorAndRuleGeneration {
 		
 		System.out.println("Generated " + apriori.getRules().size() + " rules.");
 
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Completed in " + totalTime + " ms!");
+		
 	}
 
 }

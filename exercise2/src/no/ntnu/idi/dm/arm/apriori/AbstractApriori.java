@@ -135,9 +135,7 @@ public abstract class AbstractApriori<V> {
 	 * @param frequentItemSet
 	 * @param consequent
 	 */
-	public void generateRulesBase(ItemSet<V> frequentItemSet,
-			ItemSet<V> consequent) {
-
+	public void generateRulesBase(ItemSet<V> frequentItemSet, ItemSet<V> consequent) {
 		AssociationRule rule=new AssociationRule(frequentItemSet,consequent);
 	}
 
