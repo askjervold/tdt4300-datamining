@@ -73,7 +73,7 @@ public class AprioriItemSetGeneratorAndRuleGeneration {
 		
 		// get the data set
 		List<ItemSet<String>> transactions=null;
-		boolean useSmallDataset=false; //use small or large dataset
+		boolean useSmallDataset=true; //use small or large dataset
 		try {
 			if(useSmallDataset)
 				transactions=readFile("smallDataset.txt");
