@@ -18,6 +18,8 @@ public class BruteForceApriori<V> extends BaseApriori<V> {
 
 		// number of candidates on lowest level
 		int levels = candidates.size();
+		
+		pruneInfrequentCandidates(minSupport, candidates);
 
 		// store level 1 candidates in our list of frequent itemsets
 		frequentItemSets.put(1, candidates);
@@ -28,7 +30,7 @@ public class BruteForceApriori<V> extends BaseApriori<V> {
 
 			// generate all sets
 			candidates=aprioriGen(candidates);
-			
+			candidates=pruneInfrequentCandidates(minSupport, candidates);
 			
 			frequentItemSets.put(i, candidates);
 			
