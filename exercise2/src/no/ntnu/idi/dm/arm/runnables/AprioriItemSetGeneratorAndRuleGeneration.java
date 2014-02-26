@@ -92,8 +92,8 @@ public class AprioriItemSetGeneratorAndRuleGeneration {
 
 		AbstractApriori<String> apriori;
 
-		apriori = new BruteForceApriori<String>(transactions);
-//		apriori = new FKMinus1F1Apriori<String>(transactions);
+//		apriori = new BruteForceApriori<String>(transactions);
+		apriori = new FKMinus1F1Apriori<String>(transactions);
 //		apriori = new FkMinus1FKMinus1<String>(transactions);
 
 		apriori.apriori(minSupport);
