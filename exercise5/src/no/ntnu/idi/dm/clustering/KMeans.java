@@ -43,7 +43,7 @@ public class KMeans {
 
 	private int k;  //the number of desired clusters
 	private int numberOfInstances; //the number of data points 
-	private int numberOfAttributes; //the number of atttributes each data point has. The number of dimensions each data point has.
+	private int numberOfAttributes; //the number of attributes each data point has. The number of dimensions each data point has.
 
 	// keep min, max values and the differences between them
 	private double[] minValues, maxValues, differences;
