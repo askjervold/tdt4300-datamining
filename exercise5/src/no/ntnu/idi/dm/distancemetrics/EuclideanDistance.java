@@ -11,7 +11,7 @@ public class EuclideanDistance {
 		int len = vector1.length;
 		if (vector2.length != len) return -1; // If the vectors aren't the same size, there's something wrong
 		
-		for (int i=0; i < len; i++) {
+		for (int i = 0; i < len; i++) {
 			double temp = vector2[i] - vector1[i];
 			dist += Math.pow(temp, 2);
 		}

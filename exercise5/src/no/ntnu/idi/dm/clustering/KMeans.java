@@ -33,7 +33,7 @@ import org.apache.commons.math3.random.RandomGenerator;
 /**
  * Pretty much the classic K-Means clustering. Tried to keep it simple, though.
  * 
- * @author Robert Neumayer
+ * @author Robert Neumayer, Kristian Snare & Audun Skjervold
  * @version $Id: KMeans.java 3921 2010-11-05 12:54:53Z mayer $
  */
 
@@ -168,9 +168,40 @@ public class KMeans {
 	 *         says no if there were as many changes as in the last step.
 	 */
 	private boolean recalculateClusters() {
-	
-		//TODO
-		return false;
+		
+		// We'll need to track how many changes/updates are made in this step.
+		int numUpdates = 0;
+		
+		// We'll assume that we are finished clustering. Guilty until proven innocent! Wait..
+		// boolean isFinished = true;
+		
+		// We'll need to look at all the data points.
+		for (int i = 0; i < this.data.length; i++) {
+			
+			// What's the index of the nearest cluster for this data point?
+			int neighbor = getIndexOfClosestCluster(this.data[i]);
+			
+			// Is it already a part of this cluster?
+			if (!clusters[neighbor].getIndices().contains(i)) {
+				
+				// No? Then go ahead and add it!
+				clusters[neighbor].addIndex(i);
+				
+				// Make sure to take note of this update. Guess we're not done yet!
+				numUpdates++;
+			}
+		}
+		
+		// Let's find some new centroids for our updated clusters
+		calculateNewCentroids();
+		
+		// We probably found something to merge, but should we bother to continue?
+		// This is where we should place our stopping criterion.
+		// I've chosen to continue until no data points change their cluster assignment.
+		// if (numUpdates > 0) isFinished = false; 
+		
+		// Method should return whether there were any changes.
+		return numUpdates > 0;
 	}
 
 	/**
