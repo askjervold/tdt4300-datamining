@@ -173,6 +173,7 @@ public class KMeans {
 		int numUpdates = 0;
 		
 		// We'll assume that we are finished clustering. Guilty until proven innocent! Wait..
+		// We only need this for alternative stopping criterion.
 		// boolean isFinished = true;
 		
 		// We'll need to look at all the data points.
