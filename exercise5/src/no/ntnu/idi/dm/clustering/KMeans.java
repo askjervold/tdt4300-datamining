@@ -177,10 +177,10 @@ public class KMeans {
 		// boolean isFinished = true;
 		
 		// We'll need to look at all the data points.
-		for (int i = 0; i < this.data.length; i++) {
+		for (int i = 0; i < data.length; i++) {
 			
 			// What's the index of the nearest cluster for this data point?
-			int neighbor = getIndexOfClosestCluster(this.data[i]);
+			int neighbor = getIndexOfClosestCluster(data[i]);
 			
 			// Is it already a part of this cluster?
 			if (!clusters[neighbor].getIndices().contains(i)) {
@@ -368,7 +368,13 @@ public class KMeans {
 
 	public double getAverageSilhouetteValue() {
 		double silhouette = 0;
-		//TODO
+		
+		// We'll look at each data point.
+		for (int i = 0; i < this.data.length; i++) {
+			double a = 0;
+			double b = 0;
+		}
+		
 		return silhouette;
 	}
 }
