@@ -323,7 +323,12 @@ public class KMeans {
 	 */
 	public double getSSE() {
 		double sse=0;
-		//TODO
+		
+		//For all clusters 
+		//	Get sse		
+		for (Cluster cluster : clusters) {
+			sse+=cluster.SSE(data);
+		}
 		return sse;
 	}
 

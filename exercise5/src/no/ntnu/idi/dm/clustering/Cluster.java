@@ -137,7 +137,15 @@ public class Cluster {
 	 */
 	public double SSE(double[][] data) {
 		double sse = 0d;
-		//TODO
+		double dist=0d;
+		
+		//For all points x in this cluster, sum (distance (from centroid to point x)^2)  		
+		for (int i = 0; i < indices.size(); i++) {
+				//distanceFunction = Euclidean distance, so a squared distanceFunction gives distance squared which is what we want in SSE
+				dist=distanceFunction.distance(centroid, data[indices.get(i)]);
+				sse+=Math.pow(dist, 2);
+		}
+		
 		return sse;
 	}
 
