@@ -384,22 +384,31 @@ public class KMeans {
 	public double getAverageSilhouetteValue() {
 		double silhouette = 0;
 		
-		// We'll look at each data point.
-		for (int i = 0; i < numberOfInstances; i++) {
+		// For each cluster...
+		int numClusters = clusters.length;
+		for (int i = 0; i < numClusters; i++) {
 			
-			// Average distance from this point to each point in its cluster.
-			double a = clusters[i].getAverageDistanceOfPointToAllPoints(this.data, i);
+			// ... we'll look at each point in the cluster.
+			int numIndices = clusters[i].getIndices().size();
+			for (int j = 0; j < numIndices; j++) {
 			
-			// We need to find the neighboring cluster.
-			int neighbor = getIndexOfClosestCluster(data[i]);
+				// Average distance from this point to each point in its cluster.
+				double a = clusters[i].getAverageDistanceOfPointToAllPoints(this.data, j);
 			
-			// Average distance from this point to each point in its neighboring cluster.
-			double b = clusters[neighbor].getAverageDistanceOfPointToAllPoints(this.data, i);
+				// We need to find the neighboring cluster.
+				int neighbor = getIndexOfClosestCluster(data[j]);
 			
-			silhouette += (b-a)/Math.max(a, b); 
+				// Average distance from this point to each point in its neighboring cluster.
+				double b = clusters[neighbor].getAverageDistanceOfPointToAllPoints(this.data, j);
+			
+				silhouette += (b-a)/Math.max(a, b); 
+			}
+			
+			// Average silhouette value of this cluster.
+			silhouette /= numIndices;
 		}
 		
-		// The average silhouette value
-		return silhouette/numberOfInstances;
+		// The average silhouette value of all clusters.
+		return silhouette/numClusters;
 	}
 }
