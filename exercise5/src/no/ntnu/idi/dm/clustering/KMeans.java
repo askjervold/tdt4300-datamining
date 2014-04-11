@@ -388,9 +388,6 @@ public class KMeans {
 		int numClusters = clusters.length;
 		for (int i = 0; i < numClusters; i++) {
 			
-			double avgA = 0; // For debugging
-			double avgB = 0; // For debugging
-			
 			// ... we'll look at each point in the cluster.
 			int numIndices = clusters[i].getIndices().size();
 			for (int j = 0; j < numIndices; j++) {
@@ -403,15 +400,9 @@ public class KMeans {
 			
 				// Average distance from this point to each point in its neighboring cluster.
 				double b = clusters[neighbor].getAverageDistanceOfPointToAllPoints(this.data, j);
-				
-				avgA += a;
-				avgB += b;
 			
 				silhouette += (b-a)/Math.max(a, b); 
 			}
-			
-			System.out.println("Avg. A: " + avgA/numIndices);
-			System.out.println("Avg. B: " + avgB/numIndices);
 			
 			// Average silhouette value of this cluster.
 			silhouette /= numIndices;
