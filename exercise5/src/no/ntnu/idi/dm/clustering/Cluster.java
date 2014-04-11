@@ -158,7 +158,12 @@ public class Cluster {
 	 */
 	public double SSB(double[] m) {
 		double ssb=0;
-		//TODO
+		double dist=0d;
+				
+		//distanceFunction = Euclidean distance, so a squared distanceFunction gives distance squared which is what we want in SSE
+		dist=distanceFunction.distance(m, centroid);
+		ssb=indices.size()*Math.pow(dist, 2);
+
 		return ssb;
 	}
 

@@ -22,6 +22,7 @@ package no.ntnu.idi.dm.clustering;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import no.ntnu.idi.dm.distancemetrics.EuclideanDistance;
@@ -339,7 +340,16 @@ public class KMeans {
 	 */
 	public double getSSB() {
 		double ssb=0;
-		//TODO
+		
+		//Need m, the centroid of all clusters, so make a cluster of all clusters
+		Cluster allClustersInOne=new Cluster(data[0]);
+		allClustersInOne.calculateCentroid(data);
+		
+		//For all clusters
+		//	Get ssb
+		for (Cluster cluster : clusters) {
+			ssb+=cluster.SSB(allClustersInOne.getCentroid());
+		}
 		return ssb;
 	}
 
