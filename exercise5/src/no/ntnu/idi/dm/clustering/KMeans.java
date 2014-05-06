@@ -333,18 +333,6 @@ public class KMeans {
 		}
 		return sse;
 	}
-
-//	public double getSSB() {
-//		double ssb=0;
-//		
-//		//For all clusters
-//		//	Get ssb
-//		for (Cluster cluster : clusters) {
-//			ssb+=cluster.SSB(allClustersInOne.getCentroid());
-//		}
-//		return ssb;
-//		
-//	}
 		
 	/**
 	 * 
@@ -379,7 +367,6 @@ public class KMeans {
 		
 		return m;
 	}
-	
 	
 	/**
 	 * Get the sum of the squared error for single clusters.
