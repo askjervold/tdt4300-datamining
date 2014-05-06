@@ -334,6 +334,18 @@ public class KMeans {
 		return sse;
 	}
 
+//	public double getSSB() {
+//		double ssb=0;
+//		
+//		//For all clusters
+//		//	Get ssb
+//		for (Cluster cluster : clusters) {
+//			ssb+=cluster.SSB(allClustersInOne.getCentroid());
+//		}
+//		return ssb;
+//		
+//	}
+		
 	/**
 	 * 
 	 * @return SSB.
@@ -341,18 +353,34 @@ public class KMeans {
 	public double getSSB() {
 		double ssb=0;
 		
-		//Need m, the centroid of all clusters, so make a cluster of all clusters
-		Cluster allClustersInOne=new Cluster(data[0]);
-		allClustersInOne.calculateCentroid(data);
-		
-		//For all clusters
-		//	Get ssb
 		for (Cluster cluster : clusters) {
-			ssb+=cluster.SSB(allClustersInOne.getCentroid());
+			ssb+=cluster.SSB(globalCentroid(),cluster.getNumberOfInstances());
 		}
 		return ssb;
 	}
 
+	/**
+	 * 
+	 * @return Global centroid
+	 */
+	private double [] globalCentroid(){
+		int indicesLength = clusters[0].getCentroid().length;
+		double [] m=new double[indicesLength];
+		
+		for (int i = 0; i < clusters.length; i++) {
+			for (int j = 0; j < clusters[i].getCentroid().length; j++) {
+				m[j]+= clusters[i].getCentroid()[j];
+			}
+		}
+		
+		for (int i = 0; i < indicesLength; i++) {
+			m[i]=m[i]/indicesLength;
+		}
+		
+		return m;
+	}
+	
+	
 	/**
 	 * Get the sum of the squared error for single clusters.
 	 * 
