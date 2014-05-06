@@ -7,3 +7,6 @@ bin
 *.jar
 *.war
 *.ear
+
+# Platform specific files #
+.DS_Store

@@ -14,7 +14,7 @@ public class KMeansClustererMain {
 		String fileNames[] = new String[] { "iris.arff",
 				"segment-challenge.arff" };
 
-		int k = 8;
+		int k = 5;
 
 		// load data set (in a way that just works)
 		for (String fileName : fileNames) {

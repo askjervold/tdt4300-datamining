@@ -26,7 +26,7 @@ import no.ntnu.idi.dm.distancemetrics.EuclideanDistance;
  * of a data set assigned to it.
  * 
  * @see KMeans
- * @author Robert Neumayer
+ * @author Robert Neumayer / Kristian Snare & Audun Skjervold
  * @version $Id: Cluster.java 3583 2010-05-21 10:07:41Z mayer $
  */
 

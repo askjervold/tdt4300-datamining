@@ -34,7 +34,7 @@ import org.apache.commons.math3.random.RandomGenerator;
 /**
  * Pretty much the classic K-Means clustering. Tried to keep it simple, though.
  * 
- * @author Robert Neumayer, Kristian Snare & Audun Skjervold
+ * @author Robert Neumayer / Kristian Snare & Audun Skjervold
  * @version $Id: KMeans.java 3921 2010-11-05 12:54:53Z mayer $
  */
 
@@ -385,21 +385,22 @@ public class KMeans {
 		double silhouette = 0;
 		
 		// For each cluster...
-		int numClusters = clusters.length;
-		for (int i = 0; i < numClusters; i++) {
+		for (Cluster cluster : clusters) {
 			
 			// ... we'll look at each point in the cluster.
-			int numIndices = clusters[i].getIndices().size();
+			ArrayList<Integer> indices = cluster.getIndices();
+			
+			int numIndices = indices.size();
 			for (int j = 0; j < numIndices; j++) {
 			
 				// Average distance from this point to each point in its cluster.
-				double a = clusters[i].getAverageDistanceOfPointToAllPoints(this.data, j);
+				double a = cluster.getAverageDistanceOfPointToAllPoints(this.data, indices.get(j));
 			
 				// We need to find the neighboring cluster.
 				int neighbor = getIndexOfClosestCluster(data[j]);
 			
 				// Average distance from this point to each point in its neighboring cluster.
-				double b = clusters[neighbor].getAverageDistanceOfPointToAllPoints(this.data, j);
+				double b = clusters[neighbor].getAverageDistanceOfPointToAllPoints(this.data, indices.get(j));
 			
 				silhouette += (b-a)/Math.max(a, b); 
 			}
@@ -409,6 +410,6 @@ public class KMeans {
 		}
 		
 		// The average silhouette value of all clusters.
-		return silhouette/numClusters;
+		return silhouette/(clusters.length);
 	}
 }
